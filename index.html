@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js">
+    </script>
+    <script src="app.js"></script>
+  </head>
+
+  <body style="margin-left: 10px; margin-right: 10px">
+    <div ng-app="app" ng-controller="MainCtrl" id="maindiv">
+      <div class="page-header">
+        <h1 style="text-align: center">Rate These Classic Movies</h1>
+      </div>
+
+      <div class="well">
+        <form class="form-inline" ng-submit="addRatings()">
+          <div class="form-group" ng-repeat="movie in movies" style="margin-bottom:   10px; width: 300px">
+            <h5><input type="number" min="1" max="10" id="{{movie.id}}"></input>
+            <img ng-src="{{movie.posterURL}}" height="100px" width="70px">
+            {{movie.title}}</h5>
+          </div>
+          <br>
+          <button class="btn btn-primary" type="submit" style="margin-left: 43%">  Submit Ratings</button>
+        </form>
+      </div>
+
+      <div>
+        <h1 id="rankingHeader" style="text-align: center; visibility: hidden">Current Rankings</h1>
+        <div ng-repeat="result in results | orderBy: '-score'" style="margin-bottom: 10px; margin-left: 38%">
+          <h3>{{result.score}}
+          <img ng-src="{{result.posterURL}}" height="100px" width="70px">
+          {{result.title}}</h3>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
